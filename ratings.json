@@ -1,17 +1,17 @@
 {
-  "Arsenal": {
+  "Test1": {
     "attack": 0.35,
     "defense": -0.15
   },
-  "Chelsea": {
+  "Test2": {
     "attack": 0.18,
     "defense": -0.05
   },
-  "Barcelona": {
+  "Test3": {
     "attack": 0.4,
     "defense": -0.2
   },
-  "Real Madrid": {
+  "Test4": {
     "attack": 0.42,
     "defense": -0.18
   }
