@@ -1,0 +1,57 @@
+
+openapi: 3.0.1
+info:
+  title: ModelProbGen
+  version: "1.0.0"
+servers:
+  - url: https://your-domain.example.com
+paths:
+  /predict:
+    get:
+      operationId: predict
+      summary: Generate model probabilities from fixture + date
+      parameters:
+        - in: query
+          name: home
+          required: true
+          schema: { type: string }
+        - in: query
+          name: away
+          required: true
+          schema: { type: string }
+        - in: query
+          name: league
+          required: true
+          schema: { type: string }
+        - in: query
+          name: date
+          required: true
+          schema: { type: string, format: date }
+        - in: query
+          name: ou_line
+          required: false
+          schema: { type: number, default: 2.5 }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ModelHomeProb: { type: number }
+                  ModelDrawProb: { type: number }
+                  ModelAwayProb: { type: number }
+                  ModelOverProb: { type: number }
+                  ModelUnderProb: { type: number }
+                  ModelYesProb: { type: number }
+                  ModelNoProb: { type: number }
+                  ModelHomeDNBProb: { type: number }
+                  ModelAwayDNBProb: { type: number }
+                  Model1XProb: { type: number }
+                  Model12Prob: { type: number }
+                  ModelX2Prob: { type: number }
+                  LambdaHome: { type: number }
+                  LambdaAway: { type: number }
+        '400':
+          description: Bad request

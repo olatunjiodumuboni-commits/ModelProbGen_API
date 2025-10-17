@@ -1,0 +1,18 @@
+{
+  "Arsenal": {
+    "attack": 0.35,
+    "defense": -0.15
+  },
+  "Chelsea": {
+    "attack": 0.18,
+    "defense": -0.05
+  },
+  "Barcelona": {
+    "attack": 0.4,
+    "defense": -0.2
+  },
+  "Real Madrid": {
+    "attack": 0.42,
+    "defense": -0.18
+  }
+}
