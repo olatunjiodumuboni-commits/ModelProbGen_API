@@ -1,27 +1,14 @@
 
-# ModelProbGen API
+# ModelProbGen API v1.1.0
 
-A tiny FastAPI microservice that returns **model probabilities** for 1X2, O/U, BTTS, DNB and Double Chance
-from just **fixture + date** (and optional O/U line).
+Returns model probabilities (1X2, O/U, BTTS, DNB, Double Chance) and form stability metrics:
+- HomeFormStability, AwayFormStability (0–1 each)
+- FormStability (harmonic mean)
 
-## Run locally
-```bash
+## Run
 pip install -r requirements.txt
 uvicorn main:app --reload
-```
-Open: http://127.0.0.1:8000/docs
-
-### Example
-```
-GET /predict?home=Arsenal&away=Chelsea&league=EPL&date=2025-10-19&ou_line=2.5
-```
 
 ## Docker
-```bash
-docker build -t modelprobgen:1.0 .
-docker run -p 8000:8000 modelprobgen:1.0
-```
-
-## Customize data
-Replace `ratings.json` and `league_params.json` with your calibrated values,
-or wire them to a DB. The engine uses a Poisson/Dixon–Coles core for coherence across markets.
+docker build -t modelprobgen:1.1 .
+docker run -p 8000:8000 modelprobgen:1.1

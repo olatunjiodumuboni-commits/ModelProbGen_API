@@ -2,12 +2,10 @@
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from prob_agent import ProbabilityAgent, Fixture, load_ratings_from_json, load_league_params_from_json
-from typing import Optional
 
-app = FastAPI(title="ModelProbGen", version="1.0.0",
-              description="Generate football model probabilities from fixture + date.")
+app = FastAPI(title="ModelProbGen", version="1.1.0",
+              description="Generate football model probabilities + form stability from fixture + date.")
 
-# Load example data; in production mount a volume or use a DB
 RATINGS_PATH = "ratings.json"
 LEAGUE_PARAMS_PATH = "league_params.json"
 ratings = load_ratings_from_json(RATINGS_PATH)
@@ -29,6 +27,9 @@ class PredictResponse(BaseModel):
     ModelX2Prob: float
     LambdaHome: float
     LambdaAway: float
+    HomeFormStability: float
+    AwayFormStability: float
+    FormStability: float
 
 @app.get("/predict", response_model=PredictResponse)
 def predict(home: str, away: str, league: str, date: str,

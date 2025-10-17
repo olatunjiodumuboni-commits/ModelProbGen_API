@@ -54,6 +54,9 @@ class TeamRating:
     attack: float
     defense: float
     last_updated: Optional[str] = None
+    recent_xg_for: Optional[list] = None
+    recent_xg_against: Optional[list] = None
+    form_last5: Optional[str] = None
 
 @dataclass
 class LeagueParams:
@@ -73,6 +76,31 @@ class ProbabilityAgent:
         self.ratings = ratings
         self.league_params = league_params
 
+    @staticmethod
+    def _team_form_stability(tr: TeamRating) -> float:
+        def _norm_std(vals):
+            if not vals or len(vals) < 3:
+                return None
+            m = sum(vals) / len(vals)
+            var = sum((v - m) ** 2 for v in vals) / len(vals)
+            sd = var ** 0.5
+            return min(sd, 1.5) / 1.5
+        if tr.recent_xg_for and tr.recent_xg_against and len(tr.recent_xg_for) == len(tr.recent_xg_against):
+            net = [f - a for f, a in zip(tr.recent_xg_for, tr.recent_xg_against)]
+            ns = _norm_std(net)
+            if ns is not None:
+                return max(0.0, min(1.0, 1.0 - ns))
+        if tr.form_last5:
+            mapping = {'W':1.0, 'D':0.5, 'L':0.0}
+            vals = [mapping.get(ch.upper(), 0.5) for ch in tr.form_last5 if ch.strip()]
+            if len(vals) >= 3:
+                m = sum(vals) / len(vals)
+                var = sum((v - m) ** 2 for v in vals) / len(vals)
+                sd = var ** 0.5
+                ns = min(sd, 0.5) / 0.5
+                return max(0.0, min(1.0, 1.0 - ns))
+        return 0.5
+
     def _lambdas(self, fx: Fixture):
         if fx.league not in self.league_params:
             raise ValueError(f"League '{fx.league}' not found.")
@@ -85,10 +113,10 @@ class ProbabilityAgent:
         a = self.ratings[fx.away_team]
         lambda_home = lp.mu * math.exp(lp.home_advantage + h.attack - a.defense)
         lambda_away = lp.mu * math.exp(a.attack - h.defense)
-        return lambda_home, lambda_away, lp
+        return lambda_home, lambda_away, lp, h, a
 
     def predict(self, fx: Fixture, ou_line: float = 2.5, max_goals: int = 10):
-        lambda_home, lambda_away, lp = self._lambdas(fx)
+        lambda_home, lambda_away, lp, h, a = self._lambdas(fx)
         mat = _score_matrix(lambda_home, lambda_away, max_goals=max_goals, dc_rho=lp.dc_rho)
         pH, pD, pA = _sum_outcomes(mat)
         pOver, pUnder = _over_under(mat, ou_line)
@@ -101,6 +129,9 @@ class ProbabilityAgent:
         p1X = pH + pD
         p12 = pH + pA
         pX2 = pD + pA
+        home_form = self._team_form_stability(h)
+        away_form = self._team_form_stability(a)
+        form_stability = (2 * home_form * away_form / (home_form + away_form)) if (home_form>0 and away_form>0) else 0.0
         return {
             "ModelHomeProb": _safe(pH),
             "ModelDrawProb": _safe(pD),
@@ -116,6 +147,9 @@ class ProbabilityAgent:
             "ModelX2Prob": _safe(pX2),
             "LambdaHome": lambda_home,
             "LambdaAway": lambda_away,
+            "HomeFormStability": home_form,
+            "AwayFormStability": away_form,
+            "FormStability": form_stability
         }
 
 def load_ratings_from_json(path: str):

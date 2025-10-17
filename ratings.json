@@ -1,18 +1,48 @@
 {
-  "Test1": {
+  "Arsenal": {
     "attack": 0.35,
-    "defense": -0.15
+    "defense": -0.15,
+    "form_last5": "WWDLW"
   },
-  "Test2": {
+  "Chelsea": {
     "attack": 0.18,
-    "defense": -0.05
+    "defense": -0.05,
+    "form_last5": "LDWDL"
   },
-  "Test3": {
+  "Barcelona": {
     "attack": 0.4,
-    "defense": -0.2
+    "defense": -0.2,
+    "recent_xg_for": [
+      2.1,
+      1.8,
+      2.3,
+      1.7,
+      2.0
+    ],
+    "recent_xg_against": [
+      0.8,
+      0.5,
+      0.9,
+      1.1,
+      0.7
+    ]
   },
-  "Test4": {
+  "Real Madrid": {
     "attack": 0.42,
-    "defense": -0.18
+    "defense": -0.18,
+    "recent_xg_for": [
+      1.9,
+      2.2,
+      1.6,
+      2.4,
+      1.8
+    ],
+    "recent_xg_against": [
+      0.6,
+      0.7,
+      0.5,
+      0.9,
+      0.8
+    ]
   }
 }

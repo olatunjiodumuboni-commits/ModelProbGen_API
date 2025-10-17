@@ -2,7 +2,7 @@
 openapi: 3.0.1
 info:
   title: ModelProbGen
-  version: "1.0.0"
+  version: "1.1.0"
 servers:
   - url: https://your-domain.example.com
 paths:
@@ -53,5 +53,8 @@ paths:
                   ModelX2Prob: { type: number }
                   LambdaHome: { type: number }
                   LambdaAway: { type: number }
+                  HomeFormStability: { type: number, description: "0–1, steadiness of recent form (home)" }
+                  AwayFormStability: { type: number, description: "0–1, steadiness of recent form (away)" }
+                  FormStability: { type: number, description: "0–1 harmonic mean of home/away stabilities" }
         '400':
           description: Bad request
