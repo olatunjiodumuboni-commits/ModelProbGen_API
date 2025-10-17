@@ -8,5 +8,120 @@
     "mu": 1.3,
     "home_advantage": 0.14,
     "dc_rho": 0.03
+  },
+  "SerieA": {
+    "mu": 1.32,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "Bundesliga": {
+    "mu": 1.4,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
+  },
+  "Ligue1": {
+    "mu": 1.28,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
+  },
+  "Eredivisie": {
+    "mu": 1.45,
+    "home_advantage": 0.13,
+    "dc_rho": 0.03
+  },
+  "PrimeiraLiga": {
+    "mu": 1.25,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
+  },
+  "BelgianPro": {
+    "mu": 1.38,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
+  },
+  "TurkishSuperLig": {
+    "mu": 1.4,
+    "home_advantage": 0.16,
+    "dc_rho": 0.03
+  },
+  "ScottishPrem": {
+    "mu": 1.3,
+    "home_advantage": 0.16,
+    "dc_rho": 0.03
+  },
+  "SwissSuperLeague": {
+    "mu": 1.42,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
+  },
+  "AustrianBundesliga": {
+    "mu": 1.45,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
+  },
+  "MLS": {
+    "mu": 1.55,
+    "home_advantage": 0.2,
+    "dc_rho": 0.03
+  },
+  "LigaMX": {
+    "mu": 1.34,
+    "home_advantage": 0.18,
+    "dc_rho": 0.03
+  },
+  "Brasileirao": {
+    "mu": 1.35,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "ArgentinaLPF": {
+    "mu": 1.2,
+    "home_advantage": 0.17,
+    "dc_rho": 0.03
+  },
+  "SaudiProLeague": {
+    "mu": 1.48,
+    "home_advantage": 0.17,
+    "dc_rho": 0.03
+  },
+  "J1League": {
+    "mu": 1.28,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "KLeague1": {
+    "mu": 1.2,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "ALeague": {
+    "mu": 1.55,
+    "home_advantage": 0.18,
+    "dc_rho": 0.03
+  },
+  "CSL": {
+    "mu": 1.45,
+    "home_advantage": 0.16,
+    "dc_rho": 0.03
+  },
+  "EFLChampionship": {
+    "mu": 1.28,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "LaLiga2": {
+    "mu": 1.2,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "SerieB": {
+    "mu": 1.22,
+    "home_advantage": 0.15,
+    "dc_rho": 0.03
+  },
+  "2Bundesliga": {
+    "mu": 1.36,
+    "home_advantage": 0.14,
+    "dc_rho": 0.03
   }
 }
